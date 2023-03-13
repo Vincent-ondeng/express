@@ -12,6 +12,17 @@ app.post("/users/new", async (req, res) => {
   res.json(results);
 });
 
+app.post("/users/login", async (req, res) => {
+  const { email, password } = req.body;
+  const result = await user.login(email, password);
+
+  if (result) {
+    res.status(200).json(result);
+  } else {
+    res.status(403).json({ error: "email or password is incorrect" });
+  }
+});
+
 app.get("/users", async (req, res) => {
   const result = await user.all();
   res.json(result);
