@@ -1,8 +1,14 @@
 import React from 'react'
+import Logo from "client/src/img/logo.png"
 
 const Footer = () => {
     return (
-        <div>Footer</div>
+        <footer>
+            <img src={Logo} alt="" />
+            <span>
+                Made with Love and Passion <b>ALX Software Engineering</b>. <b>React.js</b>
+            </span>
+        </footer>
     )
 }
 
