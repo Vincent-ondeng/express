@@ -1,4 +1,6 @@
 import express from "express";
+import userAuth from "../db/auth";
+import posts from "../db/post";
 import user from "../db/user";
 const PORT = process.env.PORT || 5001;
 
@@ -9,12 +11,12 @@ app.use(express.json());
 app.post("/users/new", async (req, res) => {
   const { email, username, password } = req.body;
   const results = await user.new(email, username, password);
-  res.json(results);
+  res.status(201).json(results);
 });
 
 app.post("/users/login", async (req, res) => {
   const { email, password } = req.body;
-  const result = await user.login(email, password);
+  const result = await userAuth.login(email, password);
 
   if (result) {
     res.status(200).json(result);
@@ -23,9 +25,42 @@ app.post("/users/login", async (req, res) => {
   }
 });
 
-app.get("/users", async (req, res) => {
-  const result = await user.all();
+app.get("/users/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const results = await user.single(parseInt(id));
+  res.status(200).json(results);
+});
+
+app.get("/users/:id/posts", async (req, res) => {
+  const { id } = req.params;
+  const results = await posts.singleUser(parseInt(id));
+
+  res.json(results);
+});
+
+app.post("/users/:id/posts/new", async (req, res) => {
+  const { id } = req.params;
+  const { title, content } = req.body;
+  const results = await posts.new(parseInt(id), title, content);
+  res.status(201).json(results);
+});
+
+app.get("/users/:id/posts/drafts", async (req, res) => {
+  const { id } = req.params;
+  const results = await posts.drafts(parseInt(id));
+  res.json(results);
+});
+
+app.get("/feed", async (req, res) => {
+  const result = await posts.all();
   res.json(result);
+});
+
+app.get("/feed/:id", async (req, res) => {
+  const { id } = req.params;
+  const results = await posts.single(parseInt(id));
+  res.json(results);
 });
 
 app.listen(PORT, () => console.log(`Server up on port ${PORT}`));

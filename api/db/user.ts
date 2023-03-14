@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { checkPwd, hashPwd } from "../utils/hashing";
+import userAuth from "./auth";
 
 const prisma = new PrismaClient();
 
@@ -8,25 +8,28 @@ class UserFunctions {
     return await prisma.user.findMany();
   }
 
-  async new(email: string, userName: string, password: string) {
-    const hashedPwd = await hashPwd(password);
+  async new(username: string, email: string, password: string) {
+    const userResult = await prisma.user.create({
+      data: { username },
+    });
 
-    return await prisma.user.create({
+    return await userAuth.new(email, password, userResult.id);
+  }
+
+  async updateBio(userID: number, userName: string, userBio: string) {
+    await prisma.user.update({
+      where: { id: userID },
       data: {
-        email,
+        bio: userBio,
         username: userName,
-        password: hashedPwd,
       },
     });
   }
 
-  async login(userEmail: string, password: string): Promise<boolean> {
-    // Gets the user details matching the email
-    const foundUser = await prisma.user.findUnique({
-      where: { email: userEmail },
+  async single(userID: number) {
+    return await prisma.user.findUnique({
+      where: { id: userID },
     });
-
-    return await checkPwd(String(foundUser?.password), password);
   }
 }
 
