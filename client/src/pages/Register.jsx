@@ -1,8 +1,6 @@
 import React from 'react'
+import {Link} from "react-router-dom";
 
-function Link(props) {
-    return null;
-}
 
 const Register = () => {
     return (

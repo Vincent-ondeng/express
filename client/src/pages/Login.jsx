@@ -1,8 +1,6 @@
-import React from 'react'
+import React from "react";
+import {Link} from "react-router-dom";
 
-function Link(props) {
-    return null;
-}
 
 const Login = () => {
     return (
@@ -18,6 +16,6 @@ const Login = () => {
             </form>
         </div>
     )
-}
+};
 
 export default Login
