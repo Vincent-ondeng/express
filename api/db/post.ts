@@ -32,6 +32,7 @@ class PostFunctions {
       where: { id: postID },
       include: {
         author: true,
+        comments: true,
       },
     });
   }
