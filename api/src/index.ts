@@ -1,4 +1,5 @@
 import express from "express";
+import { resolve } from "path";
 import userAuth from "../db/auth";
 import posts from "../db/post";
 import user from "../db/user";
@@ -38,12 +39,23 @@ app.get("/users/:id/posts", async (req, res) => {
 
   res.json(results);
 });
+app.get("/users/:id/posts/:postID", async (req, res) => {
+  const { id, postID } = req.params;
+  const results = await posts.single(parseInt(postID));
+  res.status(200).json(results);
+});
 
 app.post("/users/:id/posts/new", async (req, res) => {
   const { id } = req.params;
   const { title, content } = req.body;
   const results = await posts.new(parseInt(id), title, content);
   res.status(201).json(results);
+});
+
+app.delete("/users/:id/posts/:postID", async (req, res) => {
+  const { id, postID } = req.params;
+  await posts.delete(parseInt(postID));
+  res.status(204).json({ message: "successfully deleted post" });
 });
 
 app.get("/users/:id/posts/drafts", async (req, res) => {

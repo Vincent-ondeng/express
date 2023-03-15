@@ -42,6 +42,13 @@ class PostFunctions {
       },
     });
   }
+
+  // Deletes a single post
+  async delete(postID: number) {
+    return await prisma.post.delete({
+      where: { id: postID },
+    });
+  }
 }
 
 const posts = new PostFunctions();
