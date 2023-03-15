@@ -1,6 +1,6 @@
 import React from 'react'
-import Edit from 'client/src/img/edit.png'
-import Delete from 'client/src/img/delete.png'
+import Edit from '../img/edit.png'
+import Delete from '../img/delete.png'
 import {Link} from 'react-router-dom'
 import Menu from "../components/Menu";
 
