@@ -6,8 +6,8 @@ import user from '../../db/user';
 const routes = Router();
 
 routes.post('/users/new', async (req, res) => {
-  const { email, username, password } = req.body;
-  const results = await user.new(email, username, password);
+  const { username, email, password } = req.body;
+  const results = await user.new(username, email, password);
   res.status(201).json(results);
 });
 
