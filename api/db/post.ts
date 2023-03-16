@@ -1,4 +1,4 @@
-import { PrismaClient } from ".prisma/client";
+import { PrismaClient } from '.prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -11,9 +11,19 @@ class PostFunctions {
   }
 
   // Create a new post linked to the userID
-  async new(userID: number, postTitle: string, postContent: string) {
+  async new(
+    userID: number,
+    postTitle: string,
+    postContent: string,
+    publish: boolean
+  ) {
     return await prisma.post.create({
-      data: { title: postTitle, content: postContent, authorId: userID },
+      data: {
+        title: postTitle,
+        content: postContent,
+        authorId: userID,
+        published: publish,
+      },
     });
   }
 
@@ -21,7 +31,7 @@ class PostFunctions {
   // Can be used when showing a users profile?
   async singleUser(userID: number) {
     return await prisma.post.findMany({
-      where: { authorId: userID },
+      where: { authorId: userID, published: true },
     });
   }
 

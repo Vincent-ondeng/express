@@ -43,8 +43,8 @@ routes.get('/users/:id/posts/live/:postID', async (req, res) => {
 
 routes.post('/users/:id/posts/new', async (req, res) => {
   const { id } = req.params;
-  const { title, content } = req.body;
-  const results = await posts.new(parseInt(id), title, content);
+  const { title, content, publish } = req.body;
+  const results = await posts.new(parseInt(id), title, content, publish);
   res.status(201).json(results);
 });
 
