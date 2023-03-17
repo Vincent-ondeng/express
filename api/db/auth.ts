@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-import { checkPwd, hashPwd } from "../utils/hashing";
+import { PrismaClient, UserAuth } from '@prisma/client';
+import { checkPwd, hashPwd } from '../utils/hashing';
 
 const prisma = new PrismaClient();
 

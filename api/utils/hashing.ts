@@ -1,7 +1,8 @@
-import bcrypt from "bcrypt";
+import bcrypt from 'bcrypt';
+const saltRounds = String(process.env.SALT_ROUNDS);
 
 export async function hashPwd(password: string): Promise<string> {
-  const hashedPwd = await bcrypt.hash(password, 10);
+  const hashedPwd = await bcrypt.hash(password, parseInt(saltRounds));
   return hashedPwd;
 }
 

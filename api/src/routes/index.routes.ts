@@ -2,6 +2,7 @@ import { Router } from 'express';
 import userAuth from '../../db/auth';
 import posts from '../../db/post';
 import user from '../../db/user';
+import tokenRelated from '../../middleware/middlware';
 
 const routes = Router();
 
