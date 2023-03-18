@@ -2,7 +2,6 @@ import { Router } from 'express';
 import userAuth from '../../db/auth';
 import posts from '../../db/post';
 import user from '../../db/user';
-import tokenRelated from '../../middleware/middlware';
 
 const routes = Router();
 
@@ -14,10 +13,10 @@ routes.post('/users/new', async (req, res) => {
 
 routes.post('/users/login', async (req, res) => {
   const { email, password } = req.body;
-  const result = await userAuth.login(email, password);
+  const token = await userAuth.login(email, password);
 
-  if (result) {
-    res.status(200).json(result);
+  if (token != 'undefined') {
+    res.status(200).json({ token: token });
   } else {
     res.status(403).json({ error: 'email or password is incorrect' });
   }
@@ -44,8 +43,14 @@ routes.get('/users/:id/posts/live/:postID', async (req, res) => {
 
 routes.post('/users/:id/posts/new', async (req, res) => {
   const { id } = req.params;
-  const { title, content, publish } = req.body;
-  const results = await posts.new(parseInt(id), title, content, publish);
+  const { title, content, category, publish } = req.body;
+  const results = await posts.new(
+    parseInt(id),
+    title,
+    content,
+    publish,
+    category
+  );
   res.status(201).json(results);
 });
 

@@ -15,12 +15,14 @@ class PostFunctions {
     userID: number,
     postTitle: string,
     postContent: string,
+    category: string,
     publish: boolean
   ) {
     return await prisma.post.create({
       data: {
         title: postTitle,
         content: postContent,
+        category: category,
         authorId: userID,
         published: publish,
       },

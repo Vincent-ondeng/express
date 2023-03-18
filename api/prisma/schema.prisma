@@ -31,8 +31,10 @@ model User {
 
 model Post {
   id        Int       @id @default(autoincrement())
+  imgUrl    String?
   title     String
   content   String?
+  category  String
   published Boolean   @default(false)
   comments  Comment[]
   author    User      @relation(fields: [authorId], references: [id])
