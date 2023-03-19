@@ -43,10 +43,11 @@ routes.get('/users/:id/posts/live/:postID', async (req, res) => {
 
 routes.post('/users/:id/posts/new', async (req, res) => {
   const { id } = req.params;
-  const { title, content, category, publish } = req.body;
+  const { title, description, content, category, publish } = req.body;
   const results = await posts.new(
     parseInt(id),
     title,
+    description,
     content,
     category,
     publish

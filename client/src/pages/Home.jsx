@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import Feed from '../components/BlogCard';
+import React, { useEffect, useState } from "react";
+import Feed from "../components/BlogCard";
+import Loading from "../components/Loading";
 
 const Home = () => {
   const [posts, setPosts] = useState(null);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5500/feed')
+    fetch("http://localhost:5500/feed")
       .then((res) => {
         return res.json();
       })
@@ -16,12 +17,8 @@ const Home = () => {
       });
   }, []);
   return (
-    <div className="home">
-      {isLoading && (
-        <div className="text-center text-3xl font-semibold text-gray-800 p-5 inline-flex items-center justify-center">
-          Fetching posts...
-        </div>
-      )}
+    <div className="home md:w-5/6 flex flex-col md:px-10 w-full px-4">
+      {isLoading && <Loading />}
       {posts && <Feed posts={posts} />}
     </div>
   );

@@ -1,46 +1,20 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import Logo from "../img/logo.png"
+import React from "react";
+import { Link } from "react-router-dom";
+import Logo from "../img/logo.png";
 
 const Navbar = () => {
-    return (
-        <div className='navbar'>
-            <div className="container">
-                <div className="logo">
-                    <img src={Logo} alt="Express" />
-                </div>
-                <div className="links">
-                    <Link className='link' to="/?cat=art">
-                        <h6>ART</h6>
-                    </Link>
-                    <Link className='link' to="/?cat=books">
-                        <h6>BOOKS</h6>
-                    </Link>
-                    <Link className='link' to="/?cat=cinema">
-                        <h6>CINEMA</h6>
-                    </Link>
-                    <Link className='link' to="/?cat=design">
-                        <h6>DESIGN</h6>
-                    </Link>
-                    <Link className='link' to="/?cat=food">
-                        <h6>FOOD</h6>
-                    </Link>
-                    <Link className='link' to="/?cat=marketing">
-                        <h6>MARKETING</h6>
-                    </Link>
-                    <Link className='link' to="/?cat=programming">
-                        <h6>PROGRAMMING</h6>
-                    </Link>
-                    <span>Vincent</span>
-                    <span>Logout</span>
-                    <span className="write">
-                        <Link className="link" to="/write">Write</Link>
-                    </span>
-                </div>
-            </div>
-
+  return (
+    <nav className="bg-slate-50 shadow-md w-full mb-5">
+      <div className="w-full inline-flex items-center justify-around">
+        <div className="logo w-2/6">
+          <img src={Logo} alt="Express" className="w-24 h-24 object-cover" />
         </div>
-    )
-}
+        <div className="inline-flex w-3/6 justify-end">
+          <Link to="/login">Login</Link>
+        </div>
+      </div>
+    </nav>
+  );
+};
 
-export default Navbar
+export default Navbar;

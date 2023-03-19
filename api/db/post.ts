@@ -14,6 +14,7 @@ class PostFunctions {
   async new(
     userID: number,
     postTitle: string,
+    postDescription: string,
     postContent: string,
     category: string,
     publish: boolean
@@ -21,6 +22,7 @@ class PostFunctions {
     return await prisma.post.create({
       data: {
         title: postTitle,
+        description: postDescription,
         content: postContent,
         category: category,
         authorId: userID,
