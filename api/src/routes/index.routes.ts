@@ -16,7 +16,7 @@ routes.post('/users/login', async (req, res) => {
   const token = await userAuth.login(email, password);
 
   if (token != 'undefined') {
-    res.status(200).json({ token: token });
+    res.status(200).json(token);
   } else {
     res.status(403).json({ error: 'email or password is incorrect' });
   }
@@ -48,8 +48,8 @@ routes.post('/users/:id/posts/new', async (req, res) => {
     parseInt(id),
     title,
     content,
-    publish,
-    category
+    category,
+    publish
   );
   res.status(201).json(results);
 });

@@ -1,41 +1,47 @@
-import React from 'react'
-import Edit from '../img/edit.png'
-import Delete from '../img/delete.png'
-import {Link} from 'react-router-dom'
-import Menu from "../components/Menu";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Menu from '../components/Menu';
 
 const Single = () => {
-    return (
-        <div className='single'>
-            <div className="content">
-                <img src="https://www.pexels.com/photo/woman-looking-at-a-dreamcatcher-6908071/" alt="IMG" />
-                <div className="user">
-                    <img src="https://www.pexels.com/photo/cocker-spaniel-in-a-hat-15771462/" alt="USER"/>
-                    <div className="info>">
-                        <span>Vincent</span>
-                        <p>Posted 2 days ago</p>
-                    </div>
-                    <div className="edit">
-                        <Link to={`/write?edit=2`}>
-                            <img src={Edit} alt="" />
-                        </Link>
-                        <img src={Delete} alt=""/>
-                    </div>
-                </div>
-                <h1>Monitoring urban Sprawl using geospatial techniques in Kajiado North Sub-County</h1>
-                <p>AR coupled with close range photogrammetry is an amazing technology that superimposes digital components over physical objects. Close-range photogrammetry is based on the gathering of photos to build accurate measurements and, eventually, three-dimensional photo-realistic models. Augmented reality is an interactive experience that mixes the real world and computer-generated material. These contents may comprise a variety of sensory modalities, such as olfactory, haptic, somatosensory, visual, and aural. One of their prominent use cases is navigation and location assistance. AR allows companies to superimpose specific digital objects, specifically pictures over real world objects. One of the most effective AR applications is in navigation.
-                    AR can be used for inner city navigation. Through this technology you can easily identify and navigate through places such as shopping malls, museums and parks.  AR facilitates path logistics along with visual orientation for effective navigation. AR applications can highlight and superimpose directions on what your camera sees, along with instruction points for easy readability.
-                    AR can also be used in finding routes in case of an emergency. Augmented reduces  cognitive overload, a situation where the mind is ‘bombarded with information’. It is more effective in case of catastrophe since it uses optimization modes for efficient steering.
-                    AR in conjunction with close range imaging can also be used for measuring speed. An AR application can monitor the speed of your vehicle relative to other vehicles and advise accordingly on things like turns and passes. This improves performance and enhances driver safety.
+  const [post, setPost] = useState(null);
+  const { id } = useParams();
+  useEffect(() => {
+    fetch(`http://localhost:5500/feed/${id}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        if (data.imgUrl == null) {
+          console.log('null image');
+          data.imgUrl =
+            'https://github.com/musaubrian/newspulse/blob/main/assets/images/notfound.png?raw=true';
+        }
+        setPost(data);
+      });
+  }, []);
 
-                    Examples/Practical Situations applying AR and Close Range Photogrammetry
-                    Navigation applications that implement AR use several inputs such as the user’s location via GPS, initial camera measurement, and object location. They also track object movement. Sensors collect this information and connect it to IMUs of the objects in motion. The data is used to design and overlay components relative to the real-time movement of the user.
-                    Many companies have started using AR to improve their navigation services. Some of the examples are
-                </p>
-            </div>
-            <Menu />
+  return (
+    <>
+      {post && (
+        <div className="flex flex-col w-full bg-blue-50 p-10">
+          <img
+            src={post.imgUrl}
+            alt="post image"
+            className="w-full md:h-60 h-52 mb-3 rounded-md object-cover"
+          />
+          <h1 className="text-4xl md:text-5xl font-bold text-center">
+            {post.title}
+          </h1>
+          <div className="inline-flex text-lg  text-gray-800 text-center w-full items-center justify-center my-2">
+            <span className=" px-2 font-semibold">written by:</span>
+            <span>{post.author.username}</span>
+          </div>
+          <p>{post.content}</p>
         </div>
-    )
-}
+      )}
+    </>
+  );
+};
 
-export default Single
+export default Single;
