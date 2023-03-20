@@ -41,9 +41,9 @@ const Login = () => {
       });
   };
   return (
-    <>
+    <div className="h-screen w-full">
       <Navbar />
-      <div className="w-full h-full flex flex-col items-center justify-center p-2 md:p-4">
+      <div className="w-full flex flex-col items-center justify-center p-2 md:p-4">
         <form
           onSubmit={handleLogin}
           className="w-full md:w-4/6 flex flex-col p-5 bg-slate-50 shadow-lg rounded-md items-center"
@@ -92,7 +92,7 @@ const Login = () => {
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

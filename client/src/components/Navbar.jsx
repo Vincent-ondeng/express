@@ -15,7 +15,7 @@ const Navbar = () => {
   };
   return (
     <>
-      <nav className=" shadow-md w-full capitalize sticky top-0 backdrop-blur-md">
+      <nav className=" shadow-md w-full capitalize sticky top-0 backdrop-blur-md mb-10">
         <div className="w-full inline-flex items-center justify-around text-lg">
           <div className="logo w-2/6">
             <Link to="/">

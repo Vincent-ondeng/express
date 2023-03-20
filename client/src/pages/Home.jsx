@@ -17,10 +17,10 @@ const Home = () => {
       });
   }, []);
   return (
-    <div className="md:w-9/12 flex flex-col md:p-5 w-full px-4">
+    <main className="md:w-9/12 flex flex-col md:p-5 w-full px-4">
       {isLoading && <Loading />}
       {posts && <Feed posts={posts} />}
-    </div>
+    </main>
   );
 };
 
