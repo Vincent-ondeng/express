@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 const Register = () => {
@@ -8,6 +8,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [pwdError, setPWDError] = useState(false);
   const [registering, setRegistrationStatus] = useState(false);
+  const navigate = useNavigate();
 
   const handleRegister = (event) => {
     setRegistrationStatus(true);
@@ -27,6 +28,7 @@ const Register = () => {
         .then((response) => {
           return response.json();
         })
+        .then(() => navigate("/login"))
         .catch((error) => {
           setRegistrationStatus(false);
           console.error("There was a problem with the fetch operation:", error);

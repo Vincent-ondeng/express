@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Single from "./pages/Single";
 import User from "./pages/user";
 import Layout from "./components/Layout";
+import NotFound from "./pages/404";
 
 const routes = [
   {
@@ -36,6 +37,10 @@ const routes = [
   {
     path: "/user/me",
     element: <User />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ];
 

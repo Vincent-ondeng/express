@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 const Login = () => {
@@ -7,7 +7,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loginResponse, setLogginResponse] = useState("");
   const [loggingIn, setLoggingInStatus] = useState(false);
-
+  const navigate = useNavigate();
   const handleLogin = (event) => {
     setLoggingInStatus(true);
     event.preventDefault();
@@ -33,7 +33,8 @@ const Login = () => {
         );
         console.log(
           localStorage.getItem("token"),
-          localStorage.getItem("user")
+          localStorage.getItem("user"),
+          navigate("/user/me")
         );
       })
       .catch((error) => {
