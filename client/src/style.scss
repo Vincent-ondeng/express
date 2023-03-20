@@ -1,265 +1,265 @@
-$lightGreen : #bed8e6;
+// $lightGreen : #bed8e6;
 
-.app {
-  .container {
+// .app {
+//   .container {
 
-    //LOGIN & REGISTER
+//     //LOGIN & REGISTER
 
-    // .auth {
-    //   display: flex;
-    //   flex-direction: column;
-    //   align-items: center;
-    //   justify-content: center;
-    //   height: 100vh;
-    //   background-color: #bed8e6;
+//     // .auth {
+//     //   display: flex;
+//     //   flex-direction: column;
+//     //   align-items: center;
+//     //   justify-content: center;
+//     //   height: 100vh;
+//     //   background-color: #bed8e6;
 
-    //   h1 {
-    //     font-size: 20px;
-    //     color: black;
-    //     margin-bottom: 20px;
-    //   }
-    // }
+//     //   h1 {
+//     //     font-size: 20px;
+//     //     color: black;
+//     //     margin-bottom: 20px;
+//     //   }
+//     // }
 
-    // form {
-    //   display: flex;
-    //   flex-direction: column;
-    //   padding: 50px;
-    //   background-color: white;
-    //   width: 200px;
-    //   gap: 20px;
+//     // form {
+//     //   display: flex;
+//     //   flex-direction: column;
+//     //   padding: 50px;
+//     //   background-color: white;
+//     //   width: 200px;
+//     //   gap: 20px;
 
-    //   input {
-    //     padding: 10px;
-    //     border: none;
-    //     border-bottom: 1px solid gray;
-    //   }
+//     //   input {
+//     //     padding: 10px;
+//     //     border: none;
+//     //     border-bottom: 1px solid gray;
+//     //   }
 
-    //   button {
-    //     padding: 10px;
-    //     border: none;
-    //     background-color: darkslategray;
-    //     cursor: pointer;
-    //     color: white;
-    //   }
+//     //   button {
+//     //     padding: 10px;
+//     //     border: none;
+//     //     background-color: darkslategray;
+//     //     cursor: pointer;
+//     //     color: white;
+//     //   }
 
-    //   p {
-    //     font-size: 12px;
-    //     color: darkred;
-    //     text-align: center;
-    //   }
+//     //   p {
+//     //     font-size: 12px;
+//     //     color: darkred;
+//     //     text-align: center;
+//     //   }
 
-    //   span {
-    //     font-size: 12px;
-    //     text-align: center;
-    //   }
-    // }
+//     //   span {
+//     //     font-size: 12px;
+//     //     text-align: center;
+//     //   }
+//     // }
 
     
-    //FOOTER
+//     //FOOTER
 
-    footer {
-      margin-top: 100px;
-      padding: 20px;
-      background-color: #bed8e6;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 12px;
+//     footer {
+//       margin-top: 100px;
+//       padding: 20px;
+//       background-color: #bed8e6;
+//       display: flex;
+//       align-items: center;
+//       justify-content: space-between;
+//       font-size: 12px;
 
-      img {
-        height: 50px;
-      }
-    }
+//       img {
+//         height: 50px;
+//       }
+//     }
 
-    //HOME
+//     //HOME
 
-    .home {
+//     .home {
 
-      .posts {
+//       .posts {
 
-        .post {
-          &:nth-child(2n+1) {
-            flex-direction: row-reverse;
-          }
-        }
-      }          
-    }
+//         .post {
+//           &:nth-child(2n+1) {
+//             flex-direction: row-reverse;
+//           }
+//         }
+//       }          
+//     }
 
-    //SINGLE
+//     //SINGLE
 
-    .single {
-      display: flex;
-      gap: 50px;
+//     .single {
+//       display: flex;
+//       gap: 50px;
 
-      .content {
-        // flex: 5;
-        // display: flex;
-        // flex-direction: column;
-        // gap: 30px;
+//       .content {
+//         // flex: 5;
+//         // display: flex;
+//         // flex-direction: column;
+//         // gap: 30px;
 
-        img {
-          width: 100%;
-          height: 300px;
-          object-fit: cover;
-        }
+//         img {
+//           width: 100%;
+//           height: 300px;
+//           object-fit: cover;
+//         }
 
-        .user {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          font-size: 14px;
+//         .user {
+//           display: flex;
+//           align-items: center;
+//           gap: 10px;
+//           font-size: 14px;
 
-          img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-          }
+//           img {
+//             width: 50px;
+//             height: 50px;
+//             border-radius: 50%;
+//             object-fit: cover;
+//           }
 
-          span {
-            font-weight: bold;
-          }
-        }
+//           span {
+//             font-weight: bold;
+//           }
+//         }
 
-        .edit {
-          display: flex;
-          gap: 5px;
+//         .edit {
+//           display: flex;
+//           gap: 5px;
 
-          img {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-          }
-        }
-      }
+//           img {
+//             width: 20px;
+//             height: 20px;
+//             cursor: pointer;
+//           }
+//         }
+//       }
 
-      .menu {
-        flex: 2;
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
+//       .menu {
+//         flex: 2;
+//         display: flex;
+//         flex-direction: column;
+//         gap: 25px;
 
-        h1 {
-          font-size: 20px;
-          color: #555;
-        }
+//         h1 {
+//           font-size: 20px;
+//           color: #555;
+//         }
 
-        .post {
-          display: flex;
-          flex-direction: column;
+//         .post {
+//           display: flex;
+//           flex-direction: column;
 
-          img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-          }
+//           img {
+//             width: 100%;
+//             height: 200px;
+//             object-fit: cover;
+//           }
 
-          h2 {
-            color: #555;
+//           h2 {
+//             color: #555;
 
-          }
+//           }
 
-          button {
-            width: max-content;
-            padding: 7.5px 15px;
-            cursor: pointer;
-            background-color: white;
-            border: 1px solid teal;
-            color: teal;
+//           button {
+//             width: max-content;
+//             padding: 7.5px 15px;
+//             cursor: pointer;
+//             background-color: white;
+//             border: 1px solid teal;
+//             color: teal;
 
-            &:hover {
-              border: 1px solid white;
-              background-color: #bed8e6;
-              color: black;
-            }
-          }
-        }
-      }
-    }
+//             &:hover {
+//               border: 1px solid white;
+//               background-color: #bed8e6;
+//               color: black;
+//             }
+//           }
+//         }
+//       }
+//     }
 
-    //WRITE
+//     //WRITE
 
-    .add{
-      margin-top: 20px;
-      display: flex;
-      gap: 20px;
+//     .add{
+//       margin-top: 20px;
+//       display: flex;
+//       gap: 20px;
 
-      .content{
-        flex: 5;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
+//       .content{
+//         flex: 5;
+//         display: flex;
+//         flex-direction: column;
+//         gap: 20px;
 
-        input{
-          padding: 10px;
-          border: 1px solid lightgray;
-        }
+//         input{
+//           padding: 10px;
+//           border: 1px solid lightgray;
+//         }
 
-        .editorContainer{
-          height: 300px;
-          overflow: scroll;
-          border: 1px solid lightgray;
+//         .editorContainer{
+//           height: 300px;
+//           overflow: scroll;
+//           border: 1px solid lightgray;
 
-          .editor{
-            height: 100%;
-            border: none;
-          }
-        }
-      }
+//           .editor{
+//             height: 100%;
+//             border: none;
+//           }
+//         }
+//       }
 
-      .menu{
-        flex: 2;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
+//       .menu{
+//         flex: 2;
+//         display: flex;
+//         flex-direction: column;
+//         gap: 20px;
 
-        .item{
-          border: 1px solid lightgray;
-          padding: 10px;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          font-size: 12px;
-          color: #555;
+//         .item{
+//           border: 1px solid lightgray;
+//           padding: 10px;
+//           flex: 1;
+//           display: flex;
+//           flex-direction: column;
+//           justify-content: space-between;
+//           font-size: 12px;
+//           color: #555;
 
-          h1{
-            font-size: 20px;
-          }
+//           h1{
+//             font-size: 20px;
+//           }
 
-          .file{
-            text-decoration: underline;
-            cursor: pointer;
-          }
+//           .file{
+//             text-decoration: underline;
+//             cursor: pointer;
+//           }
 
-          .buttons{
-            display: flex;
-            justify-content: space-between;
+//           .buttons{
+//             display: flex;
+//             justify-content: space-between;
 
-            :first-child{
-              cursor: pointer;
-              color: teal;
-              background-color: white;
-              border: 1px solid teal;
-              padding: 3px 5px;
-            }
-            :last-child{
-              cursor: pointer;
-              color: white;
-              background-color: teal;
-              border: 1px solid teal;
-              padding: 3px 5px;
-            }
-          }
+//             :first-child{
+//               cursor: pointer;
+//               color: teal;
+//               background-color: white;
+//               border: 1px solid teal;
+//               padding: 3px 5px;
+//             }
+//             :last-child{
+//               cursor: pointer;
+//               color: white;
+//               background-color: teal;
+//               border: 1px solid teal;
+//               padding: 3px 5px;
+//             }
+//           }
 
-          .cat{
-            display: flex;
-            align-items: center;
-            gap: 2px;
-            color: teal;
-          }
-        }
-      }
-    }
-  }
-}
+//           .cat{
+//             display: flex;
+//             align-items: center;
+//             gap: 2px;
+//             color: teal;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }

@@ -7,6 +7,7 @@ import Single from "./pages/Single";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./style.scss";
+import User from "./pages/user";
 
 const Layout = () => {
   return (
@@ -45,14 +46,16 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
+  {
+    path: "/me",
+    element: <User />,
+  },
 ]);
 
 function App() {
   return (
-    <div className="app w-[100%]">
-      <div className="container w-full flex flex-col items-center justify-center">
-        <RouterProvider router={router} />
-      </div>
+    <div className="w-[100vw] bg-slate-100 flex flex-col items-center justify-center">
+      <RouterProvider router={router} />
     </div>
   );
 }

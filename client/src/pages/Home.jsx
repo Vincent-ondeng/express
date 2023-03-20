@@ -17,7 +17,7 @@ const Home = () => {
       });
   }, []);
   return (
-    <div className="home md:w-5/6 flex flex-col md:px-10 w-full px-4">
+    <div className="md:w-9/12 flex flex-col md:p-5 w-full px-4">
       {isLoading && <Loading />}
       {posts && <Feed posts={posts} />}
     </div>
