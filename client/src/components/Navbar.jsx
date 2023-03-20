@@ -4,11 +4,17 @@ import Logo from "../img/logo.png";
 
 const Navbar = () => {
   const user = JSON.parse(localStorage.getItem("user"));
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+  };
   return (
-    <nav className="bg-slate-50 shadow-md w-full mb-5 capitalize">
+    <nav className=" shadow-md w-full mb-5 capitalize sticky top-0 backdrop-blur-md">
       <div className="w-full inline-flex items-center justify-around text-lg">
         <div className="logo w-2/6">
-          <img src={Logo} alt="Express" className="w-24 h-24 object-cover" />
+          <Link to="/">
+            <img src={Logo} alt="Express" className="w-20 h-20 object-cover" />
+          </Link>
         </div>
         {!user && (
           <div className="inline-flex w-3/6 justify-end items-center">
@@ -24,6 +30,23 @@ const Navbar = () => {
             >
               create account
             </Link>
+          </div>
+        )}
+        {user && (
+          <div>
+            {" "}
+            <Link
+              to="/user/write"
+              className="bg-blue-400 py-3 px-4 mx-4 text-lg rounded-md active:bg-blue-500 transition-all text-white font-semibold"
+            >
+              Write
+            </Link>
+            <button
+              onClick={handleLogout}
+              className="border-2 border-blue-400 py-2 px-4 rounded-md"
+            >
+              Log out
+            </button>
           </div>
         )}
       </div>

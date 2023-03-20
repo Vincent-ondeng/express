@@ -20,7 +20,7 @@ const routes = [
         element: <Single />,
       },
       {
-        path: "/write",
+        path: "/user/write",
         element: <Write />,
       },
     ],
@@ -34,7 +34,7 @@ const routes = [
     element: <Login />,
   },
   {
-    path: "/me",
+    path: "/user/me",
     element: <User />,
   },
 ];
