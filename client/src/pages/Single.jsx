@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Router, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 
 const Single = () => {
@@ -18,7 +18,6 @@ const Single = () => {
             "https://github.com/musaubrian/newspulse/blob/main/assets/images/notfound.png?raw=true";
         }
         setPost(data);
-        Router.push("/users/me");
       });
   }, [id]);
 

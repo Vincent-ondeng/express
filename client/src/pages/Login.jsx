@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  Link,
-  Router,
-  unstable_HistoryRouter,
-  useRoutes,
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -86,8 +81,7 @@ const Login = () => {
           type="submit"
           className="bg-blue-400 py-3 px-4 md:w-2/6 w-3/6 rounded-md text-lg active:bg-blue-500 hover:border-2 hover:border-blue-500 hover:bg-transparent hover:font-semibold transition-all"
         >
-          {!loggingIn && <span>Login</span>}
-          {loggingIn && <span>Logging In...</span>}
+          {loggingIn ? <span>Logging In...</span> : <span>Login</span>}
         </button>
       </form>
     </div>
