@@ -18,9 +18,9 @@ const Register = () => {
       email,
       password,
     };
-    if (password.length > 8) {
+    if (password.length >= 8) {
       setPWDError(false);
-      fetch("http://localhost:5500/users/login", {
+      fetch("http://localhost:5500/users/new", {
         method: "POST",
         body: JSON.stringify(userRegister),
         headers: { "Content-Type": "application/json" },
@@ -28,7 +28,10 @@ const Register = () => {
         .then((response) => {
           return response.json();
         })
-        .then(() => navigate("/login"))
+        .then(() => {
+          navigate("/login");
+          setRegistrationStatus(false);
+        })
         .catch((error) => {
           setRegistrationStatus(false);
           console.error("There was a problem with the fetch operation:", error);

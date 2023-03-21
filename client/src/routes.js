@@ -24,6 +24,10 @@ const routes = [
         path: "/user/write",
         element: <Write />,
       },
+      {
+        path: "/user/posts/:id",
+        element: <Single />,
+      },
     ],
   },
   {

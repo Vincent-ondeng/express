@@ -19,7 +19,14 @@ const Home = () => {
   return (
     <main className="md:w-9/12 flex flex-col md:p-5 w-full px-4">
       {isLoading && <Loading />}
-      {posts && <Feed posts={posts} />}
+      {!isLoading && posts.length < 1 && (
+        <div className="w-full inline-flex items center justify-center h-[75vh]">
+          <h1 className="text-3xl md:text-xl font-semibold">
+            Nothing here yet
+          </h1>
+        </div>
+      )}
+      {!isLoading && posts.length > 0 && <Feed posts={posts} />}
     </main>
   );
 };

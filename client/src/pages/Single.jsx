@@ -13,13 +13,10 @@ const Single = () => {
       })
       .then((data) => {
         setLoading(false);
-        if (data.imgUrl == null) {
-          data.imgUrl =
-            "https://github.com/musaubrian/newspulse/blob/main/assets/images/notfound.png?raw=true";
-        }
         setPost(data);
       });
-  }, [id]);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>
@@ -27,7 +24,11 @@ const Single = () => {
       {post && (
         <div className="flex flex-col px-5 md:px-10 w-full md:w-5/6 bg-slate-100 md:bg-slate-200 mb-10 rounded-md md:shadow-lg items-center text-justify">
           <img
-            src={post.imgUrl}
+            src={
+              post.imgURL === null
+                ? "https://github.com/musaubrian/newspulse/blob/main/assets/images/notfound.png?raw=true"
+                : post.imgURL
+            }
             alt="post thumbnail"
             className="w-full md:h-60 h-52 mb-5 rounded-md object-cover shadow-lg"
           />
@@ -40,7 +41,11 @@ const Single = () => {
           </div>
           <div className="inline-flex text-lg  text-gray-800 text-center w-full items-center justify-center">
             <span className="pl-4 pr-2 font-semibold">Category:</span>
-            <span>{post.category}</span>
+            {post.description === null ? (
+              <span>{post.category}</span>
+            ) : (
+              <span>uncategorized</span>
+            )}
           </div>
           <div className="text-lg md:text-xl  mt-5 w-full px-5 mb-10 md:w-5/6">
             <p className="text-justify text-md w-full text-gray-900 whitespace-pre-wrap">

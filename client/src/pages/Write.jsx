@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "../supabase";
+const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 
 const Write = () => {
   const [title, setTitle] = useState("");
@@ -6,38 +9,40 @@ const Write = () => {
   const [description, setdescription] = useState("");
   const [content, setContent] = useState("");
   const [sending, setSending] = useState(false);
-  const [createDraft, setDraft] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   const id = user.id;
   let publish = true;
 
-  const newPost = (e) => {
-    e.preventDefault();
+  const uploadFile = async (file) => {
     setSending(true);
-    const postData = { title, category, description, content, publish };
-    fetch(`http://localhost:5500/users/${id}/posts/new`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(postData),
-    }).then((res) => {
-      setSending(false);
-      console.log(res.data);
-    });
+    const { data, error } = await supabase.storage
+      .from("images")
+      .upload(`posts/${file.name}`, file, { cacheControl: 3600, upsert: true });
+
+    const imageUrl = `${supabaseUrl}//storage/v1/object/public/images/${data.path}`;
+
+    console.log(imageUrl);
+    return imageUrl;
   };
 
-  const handleDraft = (e) => {
+  const newPost = async (e) => {
     e.preventDefault();
-    publish = false;
-    setDraft(true);
-    const postData = { title, category, description, content, publish };
+    const url = await uploadFile(selectedFile);
+    setSending(true);
+    const postData = { url, title, category, description, content, publish };
     fetch(`http://localhost:5500/users/${id}/posts/new`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(postData),
-    }).then((res) => {
-      console.log(res.data);
-      setDraft(false);
-    });
+    })
+      .then(() => {
+        setSending(false);
+        navigate("/");
+      })
+      .catch((error) => console.log(error));
+    console.log(selectedFile.name);
   };
 
   return (
@@ -46,16 +51,18 @@ const Write = () => {
         onSubmit={newPost}
         className="flex flex-col items-center bg-blue-50 w-full md:w-5/6 text-lg"
       >
-        <h1>Write</h1>
+        <input
+          type="file"
+          className="w-5/6 md:w-3/6 my-2 bg-slate-200 p-3 shadow-sm rounded-md"
+          onChange={(e) => setSelectedFile(e.target.files[0])}
+        />
         <input
           type="text"
           placeholder="Post title"
           className="w-5/6 md:w-3/6 p-2 my-2 border-2 border-slate-400 bg-inherit rounded-md"
           required
           value={title}
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
+          onChange={(e) => setTitle(e.target.value)}
         />
         <select
           className="rounded-md p-3 bg-slate-200 w-5/6 md:w-3/6 my-2"
@@ -65,6 +72,7 @@ const Write = () => {
             setCategory(e.target.value);
           }}
         >
+          <option>-- Pick a category --</option>
           <option value="programming">Programming</option>
           <option value="art">Art</option>
           <option value="AI">AI</option>
@@ -89,7 +97,7 @@ const Write = () => {
           }}
         ></textarea>
         <div className="inline-flex justify-center w-full">
-          <button className="mx-3 text-semibold text-lg bg-[#87ceeb] px-5 py-3 rounded-md mt-2 mb-5 hover:bg-[#4eafd6] hover:text-gray-50">
+          <button className="mx-3 text-semibold text-lg bg-[#87ceeb] px-5 py-3 rounded-md mt-2 mb-20 w-3/6 transition-all hover:bg-[#4eafd6] hover:text-gray-50">
             {!sending && <span>Publish post</span>}
             {sending && <span>publishing post...</span>}
           </button>
