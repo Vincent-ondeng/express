@@ -5,6 +5,9 @@ import user from '../../db/user';
 import { verifyToken } from '../../middleware/middlware';
 
 const routes = Router();
+routes.get('/', (req, res) => {
+  return res.send('Express blog api');
+});
 
 routes.post('/users/new', async (req, res) => {
   const { username, defaultIMG, email, password } = req.body;
