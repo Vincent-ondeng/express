@@ -18,7 +18,9 @@ const UserSingle = () => {
         Authorization: `Bearer ${token}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 204) console.log("noice");
+      })
       .then(() => navigate("/user/me"));
   };
 
@@ -62,12 +64,12 @@ const UserSingle = () => {
               <span>uncategorized</span>
             )}
           </div>
-          <span
+          <button
             className="text-red-500 underline font-semibold text-lg"
             onClick={handleDelete}
           >
             Delete ?
-          </span>
+          </button>
           <div className="text-lg md:text-xl  mt-5 w-full px-2 mb-10 md:w-5/6">
             <p className="text-justify text-md w-full text-gray-900 whitespace-pre-wrap">
               {post.content}
