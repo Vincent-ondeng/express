@@ -35,7 +35,7 @@ const UpdateProfile = () => {
       username,
       userBio,
     };
-    fetch(`http://localhost:5500/users/${user.id}/update`, {
+    fetch(`https://express-api-o02g.onrender.com/users/${user.id}/update`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

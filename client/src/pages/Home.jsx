@@ -7,7 +7,7 @@ const Home = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5500/feed")
+    fetch("https://express-api-o02g.onrender.com/feed")
       .then((res) => {
         return res.json();
       })

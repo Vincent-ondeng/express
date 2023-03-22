@@ -7,7 +7,7 @@ const Single = () => {
   const [isLoading, setLoading] = useState(true);
   const { id } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:5500/feed/${id}`)
+    fetch(`https://express-api-o02g.onrender.com/feed/${id}`)
       .then((res) => {
         return res.json();
       })

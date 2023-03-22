@@ -17,7 +17,7 @@ const Login = () => {
       email,
       password,
     };
-    fetch("http://localhost:5500/users/login", {
+    fetch("https://express-api-o02g.onrender.com/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userLogin),

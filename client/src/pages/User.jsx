@@ -17,7 +17,7 @@ const User = () => {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:5500/users/${id}/posts/`, {
+    fetch(`https://express-api-o02g.onrender.com/users/${id}/posts/`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {

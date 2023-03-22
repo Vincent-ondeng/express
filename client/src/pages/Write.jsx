@@ -38,7 +38,7 @@ const Write = () => {
     const url = await uploadFile(selectedFile);
     setSending(true);
     const postData = { url, title, category, description, content, publish };
-    fetch(`http://localhost:5500/users/${id}/posts/new`, {
+    fetch(`https://express-api-o02g.onrender.com/users/${id}/posts/new`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

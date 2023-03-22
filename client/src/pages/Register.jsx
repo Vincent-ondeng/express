@@ -22,7 +22,7 @@ const Register = () => {
     };
     if (password.length >= 8) {
       setPWDError(false);
-      fetch("http://localhost:5500/users/new", {
+      fetch("https://express-api-o02g.onrender.com/users/new", {
         method: "POST",
         body: JSON.stringify(userRegister),
         headers: { "Content-Type": "application/json" },
