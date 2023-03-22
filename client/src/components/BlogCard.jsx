@@ -1,22 +1,22 @@
 import { Link } from "react-router-dom";
 const Feed = ({ posts }) => {
   return (
-    <div className="posts w-full">
+    <div className="w-full">
       {posts.map((post) => (
         <div
-          className="post flex flex-col md:flex-row justify-start w-full shadow-md mb-10 p-5 md:px-10 md:py-5 rounded-md bg-slate-50"
+          className="post flex flex-col md:flex-row justify-around items-center w-full shadow-md mb-10 p-5 md:px-10 md:py-5 rounded-md bg-slate-50"
           key={post.id}
         >
-          {/* <div className="img w-2/6 items-center justify-center">
+          <div className="img w-full md:w-3/6 items-center justify-center">
             <img
-              src={post.img}
+              src={post.imgURL}
               alt="post thumbnail"
-              className="object-cover w-32 h-32 border-2"
+              className="object-cover w-full h-auto border-2 rounded-md"
             />
-          </div> */}
-          <div className="content full flex flex-col">
+          </div>
+          <div className="content w-full my-4 md:w-3/6 flex flex-col items- justify-start md:px-5 md:text-left">
             <Link className="link" to={`/post/${post.id}`}>
-              <h1 className="font-bold text-2xl md:text-3xl capitalize">
+              <h1 className="font-black text-3xl md:text-4xl capitalize">
                 {post.title}
               </h1>
             </Link>
@@ -24,9 +24,9 @@ const Feed = ({ posts }) => {
               {post.description}
             </span>
             <Link to={`/post/${post.id}`}>
-              <button className="rounded-md text-semibold text-lg border-2 p-2 border-[skyblue] hover:bg-[skyblue]">
+              <span className="rounded-md text-semibold text-lg  text-blue-500 hover:underline transition-all">
                 Read More
-              </button>
+              </span>
             </Link>
           </div>
         </div>

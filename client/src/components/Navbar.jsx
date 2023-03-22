@@ -9,6 +9,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.clear();
+    setDropdown(false);
     navigate("/");
   };
 
@@ -44,7 +45,7 @@ const Navbar = () => {
               </Link>
             </div>
           )}
-          {user && (
+          {user !== null && (
             <div className="flex flex-row items-center justify-end w-3/6">
               <Link to="/user/me" className="px-4 hidden md:block">
                 Account
@@ -68,7 +69,7 @@ const Navbar = () => {
               </button>
               <Link
                 to="/user/write"
-                className=" px-4 text-lg rounded-md active:bg-blue-500 hidden md:block"
+                className=" px-4 text-lg rounded-md active:text-blue-500 hidden md:block transition-all"
               >
                 Write
               </Link>
