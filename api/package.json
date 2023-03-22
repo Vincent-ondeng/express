@@ -5,8 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "nodemon src/index.ts",
-      "build": "tsc"
+      "start": "ts-node src/index.ts",
+      "build": "npm install && tsc"
   },
   "keywords": [],
   "author": "",
