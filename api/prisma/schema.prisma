@@ -23,6 +23,7 @@ model UserAuth {
 model User {
   id       Int        @id @default(autoincrement())
   username String     @unique
+  imgURL   String?
   bio      String?
   posts    Post[]
   comments Comment[]
@@ -31,7 +32,7 @@ model User {
 
 model Post {
   id          Int       @id @default(autoincrement())
-  imgUrl      String?
+  imgURL      String?
   title       String
   description String?
   content     String?

@@ -1,4 +1,4 @@
-import { PrismaClient } from '.prisma/client';
+import { PrismaClient } from ".prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -13,6 +13,7 @@ class PostFunctions {
   // Create a new post linked to the userID
   async new(
     userID: number,
+    url: string,
     postTitle: string,
     postDescription: string,
     postContent: string,
@@ -21,6 +22,7 @@ class PostFunctions {
   ) {
     return await prisma.post.create({
       data: {
+        imgURL: url,
         title: postTitle,
         description: postDescription,
         content: postContent,

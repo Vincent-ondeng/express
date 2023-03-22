@@ -1,19 +1,27 @@
 import { User } from '@prisma/client';
+import { NextFunction, Request, Response } from 'express';
 import jsonwebtoken from 'jsonwebtoken';
+const tokenSignature = process.env.TOKEN_SIGNATURE;
 
 // Creates a new token for the user
-class AuthJWT {
-  signJWT(user: User, signature: string): string {
-    return jsonwebtoken.sign({ data: user }, signature, {
-      expiresIn: 30 * 60,
-    });
-  }
-
-  verifyJWT(token: string, signature: string): User {
-    const jwtData = jsonwebtoken.verify(token, signature) as User;
-    return jwtData;
-  }
+export function signJWT(user: User, signature: string): string {
+  return jsonwebtoken.sign(user, signature, {
+    expiresIn: 30 * 60,
+  });
 }
 
-const tokenRelated = new AuthJWT();
-export default tokenRelated;
+export function verifyToken(req: Request, res: Response, next: NextFunction) {
+  const bearerHeader = req.headers['authorization'];
+  if (typeof bearerHeader !== 'undefined') {
+    const bearer = bearerHeader.split(' ');
+    const bearerToken = bearer[1];
+    try {
+      jsonwebtoken.verify(bearerToken, String(tokenSignature));
+      next();
+    } catch (error) {
+      res.sendStatus(401);
+    }
+  } else {
+    res.sendStatus(401);
+  }
+}

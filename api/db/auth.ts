@@ -1,5 +1,5 @@
 import { PrismaClient, User } from "@prisma/client";
-import tokenRelated from "../middleware/middlware";
+import { signJWT } from "../middleware/middlware";
 import { checkPwd, hashPwd } from "../utils/hashing";
 require("dotenv").config();
 const prisma = new PrismaClient();
@@ -31,10 +31,11 @@ class Auth {
       id: Number(userDets?.User.id),
       username: String(userDets?.User.username),
       bio: String(userDets?.User.bio),
+      imgURL: String(userDets?.User.imgURL),
     };
     if (status) {
       if (signature != "undefined") {
-        const token = tokenRelated.signJWT(userData, String(signature));
+        const token = signJWT(userData, String(signature));
         const returnData = { token, userDets };
         return returnData;
       }

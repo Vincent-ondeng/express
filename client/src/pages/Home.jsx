@@ -21,7 +21,7 @@ const Home = () => {
       {isLoading && <Loading />}
       {!isLoading && posts.length < 1 && (
         <div className="w-full inline-flex items center justify-center h-[75vh]">
-          <h1 className="text-3xl md:text-xl font-semibold">
+          <h1 className="text-3xl md:text-4xl font-semibold">
             Nothing here yet
           </h1>
         </div>

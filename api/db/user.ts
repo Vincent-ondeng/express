@@ -16,10 +16,16 @@ class UserFunctions {
     return await userAuth.new(email, password, userResult.id);
   }
 
-  async updateBio(userID: number, userName: string, userBio: string) {
+  async updateBio(
+    userID: number,
+    imgURL: string,
+    userName: string,
+    userBio: string
+  ) {
     await prisma.user.update({
       where: { id: userID },
       data: {
+        imgURL,
         bio: userBio,
         username: userName,
       },
