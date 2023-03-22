@@ -36,17 +36,19 @@ const User = () => {
       <Navbar />
       <div className="flex flex-col w-full">
         {user !== null && (
-          <div className="px-10">
-            <div className="flex flex-row items-center justify-center border-b-2 p-5 mb-10 border-slate-400">
-              <div className="w-3/6 inline-flex items-center md:justify-end md:px-10">
+          <div className="px-5 md:px-10">
+            <div className="flex flex-col md:flex-row items-center justify-center border-b-2 p-5 mb-10 border-slate-400">
+              <div className="w-full md:w-3/6 inline-flex items-center justify-center md:justify-end md:px-10">
                 <img
                   src={imgURL}
                   alt=""
-                  className="w-4/6 md:w-2/6 mb-5 rounded-full shadow-lg object-cover"
+                  className="w-3/6 md:w-2/6 mb-5 rounded-full shadow-lg object-cover"
                 />
               </div>
-              <div className="w-3/6 flex flex-col items-start md:px-5 justify-center">
-                <h1 className="font-semibold text-3xl">{username}</h1>
+              <div className="w-full md:w-3/6 flex flex-col items-center md:items-start md:px-5">
+                <h1 className="font-semibold text-3xl text-center">
+                  {username}
+                </h1>
                 <p className="text-gray-800 text-lg">
                   {bio === null ? (
                     <span>Nothing about you yet ☹️</span>

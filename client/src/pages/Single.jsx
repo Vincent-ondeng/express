@@ -21,7 +21,7 @@ const Single = () => {
     <>
       {isLoading && <Loading />}
       {post && (
-        <div className="flex flex-col px-5 md:px-10 w-full md:w-5/6 bg-slate-100 md:bg-slate-200 mb-10 rounded-md md:shadow-lg items-center text-justify">
+        <div className="flex flex-col px-4 md:px-10 w-full md:w-5/6 bg-slate-100 md:bg-slate-200 mb-10 rounded-md md:shadow-lg items-center text-justify">
           <img
             src={
               post.imgURL === null
@@ -46,7 +46,7 @@ const Single = () => {
               <span>uncategorized</span>
             )}
           </div>
-          <div className="text-lg md:text-xl  mt-5 w-full px-5 mb-10 md:w-5/6">
+          <div className="text-lg md:text-xl  mt-5 w-full px-2 mb-10 md:w-5/6">
             <p className="text-justify text-md w-full text-gray-900 whitespace-pre-wrap">
               {post.content}
             </p>
