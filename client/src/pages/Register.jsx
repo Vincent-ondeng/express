@@ -3,18 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 const Register = () => {
+  const supabaseURL = process.env.REACT_APP_SUPABASE_URL;
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [pwdError, setPWDError] = useState(false);
   const [registering, setRegistrationStatus] = useState(false);
   const navigate = useNavigate();
-
+  const defaultIMG = `${supabaseURL}/storage/v1/object/public/images/users/116880072.png`;
   const handleRegister = (event) => {
     setRegistrationStatus(true);
     event.preventDefault();
     const userRegister = {
       username,
+      defaultIMG,
       email,
       password,
     };

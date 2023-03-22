@@ -4,6 +4,7 @@ import jsonwebtoken from 'jsonwebtoken';
 const tokenSignature = process.env.TOKEN_SIGNATURE;
 
 // Creates a new token for the user
+// Token expires in 1 hour
 export function signJWT(user: User, signature: string): string {
   return jsonwebtoken.sign(user, signature, {
     expiresIn: 30 * 60,

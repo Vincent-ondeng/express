@@ -7,8 +7,8 @@ import { verifyToken } from '../../middleware/middlware';
 const routes = Router();
 
 routes.post('/users/new', async (req, res) => {
-  const { username, email, password } = req.body;
-  const results = await user.new(username, email, password);
+  const { username, defaultIMG, email, password } = req.body;
+  const results = await user.new(username, defaultIMG, email, password);
   res.status(201).json(results);
 });
 
@@ -29,18 +29,35 @@ routes.get('/users/:id', verifyToken, async (req, res) => {
   res.status(200).json(results);
 });
 
-routes.get('/users/:id/posts/live', verifyToken, async (req, res) => {
+routes.put('/users/:id/update', verifyToken, async (req, res) => {
+  const { id } = req.params;
+  const { imgURL, username, userBio } = req.body;
+  const results = await user.updateProfile(
+    parseInt(id),
+    imgURL,
+    username,
+    userBio
+  );
+  res.json(results);
+});
+
+routes.get('/users/:id/posts/', verifyToken, async (req, res) => {
   const { id } = req.params;
   const results = await posts.singleUser(parseInt(id));
 
   res.json(results);
 });
-routes.get('/users/:id/posts/live/:postID', verifyToken, async (req, res) => {
-  const { id, postID } = req.params;
+routes.get('/users/:id/posts/:postID', verifyToken, async (req, res) => {
+  const { postID } = req.params;
   const results = await posts.single(parseInt(postID));
   res.status(200).json(results);
 });
 
+routes.delete('/users/:id/posts/:postID', verifyToken, async (req, res) => {
+  const { postID } = req.params;
+  await posts.delete(parseInt(postID));
+  res.status(204).json({ message: 'successfully deleted post' });
+});
 routes.post('/users/:id/posts/new', verifyToken, async (req, res) => {
   const { id } = req.params;
   const { url, title, description, content, category, publish } = req.body;
@@ -55,16 +72,6 @@ routes.post('/users/:id/posts/new', verifyToken, async (req, res) => {
   );
   res.status(201).json(results);
 });
-
-routes.delete(
-  '/users/:id/posts/live/:postID',
-  verifyToken,
-  async (req, res) => {
-    const { id, postID } = req.params;
-    await posts.delete(parseInt(postID));
-    res.status(204).json({ message: 'successfully deleted post' });
-  }
-);
 
 routes.get('/feed', async (req, res) => {
   const result = await posts.all();

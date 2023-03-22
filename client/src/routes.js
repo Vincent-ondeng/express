@@ -3,9 +3,11 @@ import Login from "./pages/Login";
 import Write from "./pages/Write";
 import Home from "./pages/Home";
 import Single from "./pages/Single";
-import User from "./pages/user";
+import User from "./pages/User";
 import Layout from "./components/Layout";
 import NotFound from "./pages/404";
+import UpdateProfile from "./pages/UpdateProfile";
+import UserSingle from "./pages/UserSingle";
 
 const routes = [
   {
@@ -25,8 +27,12 @@ const routes = [
         element: <Write />,
       },
       {
+        path: "/user/edit",
+        element: <UpdateProfile />,
+      },
+      {
         path: "/user/posts/:id",
-        element: <Single />,
+        element: <UserSingle />,
       },
     ],
   },

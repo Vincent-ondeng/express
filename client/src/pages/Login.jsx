@@ -7,9 +7,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loginResponse, setLogginResponse] = useState("");
   const [loggingIn, setLoggingInStatus] = useState(false);
+  const [isInValid, setIsInValid] = useState(false);
   const navigate = useNavigate();
   const handleLogin = (event) => {
     setLoggingInStatus(true);
+    setIsInValid(false);
     event.preventDefault();
     const userLogin = {
       email,
@@ -21,21 +23,35 @@ const Login = () => {
       body: JSON.stringify(userLogin),
     })
       .then((res) => {
+        if (res.status === 403) setIsInValid(true);
         return res.json();
       })
       .then((data) => {
         setLoggingInStatus(false);
         setLogginResponse(data);
-        localStorage.setItem("token", loginResponse.token);
+        localStorage.setItem("token", JSON.stringify(loginResponse.token));
         localStorage.setItem(
           "user",
           JSON.stringify(loginResponse.userDets.User)
         );
-        console.log(
-          localStorage.getItem("token"),
-          localStorage.getItem("user"),
-          navigate("/user/me")
+        localStorage.setItem(
+          "id",
+          JSON.stringify(loginResponse.userDets.User.id)
         );
+        localStorage.setItem(
+          "username",
+          JSON.stringify(loginResponse.userDets.User.username)
+        );
+        localStorage.setItem(
+          "imgURL",
+          JSON.stringify(loginResponse.userDets.User.imgURL)
+        );
+        localStorage.setItem(
+          "bio",
+          JSON.stringify(loginResponse.userDets.User.bio)
+        );
+
+        navigate("/user/me");
       })
       .catch((error) => {
         console.log("error: ", error);
@@ -52,6 +68,11 @@ const Login = () => {
           <h1 className="text-3xl underline my-3 md:text-4xl font-semibold">
             Login
           </h1>
+          {isInValid && (
+            <span className="text-red-400 text-lg font-semibold my-2">
+              Incorrect email or password
+            </span>
+          )}
           <label className="text-gray-700 md:w-5/6 text-lg text-left inline-flex items-center justify-start w-full md:py-2">
             Email:
           </label>

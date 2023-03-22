@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 
-const Single = () => {
+const UserSingle = () => {
   const [post, setPost] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const { id } = useParams();
@@ -57,4 +57,4 @@ const Single = () => {
   );
 };
 
-export default Single;
+export default UserSingle;
