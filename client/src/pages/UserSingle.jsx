@@ -1,11 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 
 const UserSingle = () => {
   const [post, setPost] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const { id } = useParams();
+  const userID = JSON.parse(localStorage.getItem("id"));
+  const token = JSON.parse(localStorage.getItem("token"));
+  const navigate = useNavigate();
+
+  const handleDelete = () => {
+    fetch(`https://express-api-o02g.onrender.com/users/${userID}/posts/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then(() => navigate("/user/me"));
+  };
+
   useEffect(() => {
     fetch(`https://express-api-o02g.onrender.com/feed/${id}`)
       .then((res) => {
@@ -46,7 +62,13 @@ const UserSingle = () => {
               <span>uncategorized</span>
             )}
           </div>
-          <div className="text-lg md:text-xl  mt-5 w-full px-5 mb-10 md:w-5/6">
+          <span
+            className="text-red-500 underline font-semibold text-lg"
+            onClick={handleDelete}
+          >
+            Delete ?
+          </span>
+          <div className="text-lg md:text-xl  mt-5 w-full px-2 mb-10 md:w-5/6">
             <p className="text-justify text-md w-full text-gray-900 whitespace-pre-wrap">
               {post.content}
             </p>

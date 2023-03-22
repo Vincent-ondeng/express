@@ -29,7 +29,7 @@ const Single = () => {
                 : post.imgURL
             }
             alt="post thumbnail"
-            className="w-full md:h-60 h-52 my-5 rounded-md object-cover shadow-lg"
+            className="w-full md:h-60 h-40 my-5 rounded-md object-cover shadow-lg"
           />
           <h1 className="text-3xl md:text-4xl font-bold text-center capitalize">
             {post.title}
