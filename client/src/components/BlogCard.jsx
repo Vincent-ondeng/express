@@ -22,7 +22,7 @@ const Feed = ({ posts }) => {
               <span className="text-gray-800 text-lg py-2">
                 {post.description}
               </span>
-              <span className="text-semibold text-lg  w-full  text-blue-500 hover:underline transition-all">
+              <span className="text-semibold text-lg px-2 w-full  text-blue-500 hover:underline transition-all">
                 Read More
               </span>
             </Link>

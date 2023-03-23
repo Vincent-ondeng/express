@@ -52,16 +52,25 @@ const UserSingle = () => {
           <h1 className="text-3xl md:text-4xl font-bold text-center capitalize">
             {post.title}
           </h1>
-          <div className="inline-flex text-lg  text-gray-800 text-center w-full items-center justify-center mt-2">
+          <div className="inline-flex text-lg  text-gray-800 text-center  items-center justify-center mt-2">
             <span className=" px-2 font-semibold">written by:</span>
-            <span>{post.author.username}</span>
+            <span className="mr-2">
+              {post.author.username === user.username
+                ? `me (${post.author.username})`
+                : post.author.username}
+            </span>
+            <img
+              src={post.author.imgURL}
+              className="w-7  h-7 rounded-full"
+              alt="author profile"
+            />
           </div>
           <div className="inline-flex text-lg  text-gray-800 text-center w-full items-center justify-center">
             <span className="pl-4 pr-2 font-semibold">Category:</span>
             {post.description === null ? (
-              <span>{post.category}</span>
-            ) : (
               <span>uncategorized</span>
+            ) : (
+              <span>{post.category}</span>
             )}
           </div>
           <button

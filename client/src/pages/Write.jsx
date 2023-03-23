@@ -98,6 +98,8 @@ const Write = () => {
           <option value="programming">Programming</option>
           <option value="art">Art</option>
           <option value="AI">AI</option>
+          <option value="Food">Food</option>
+          <option value="Movies">Movies</option>
           <option value="sth-else">some other category</option>
         </select>
         <textarea

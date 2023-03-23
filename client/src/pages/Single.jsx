@@ -42,9 +42,9 @@ const Single = () => {
           <div className="inline-flex text-lg  text-gray-800 text-center w-full items-center justify-center">
             <span className="pl-4 pr-2 font-semibold">Category:</span>
             {post.description === null ? (
-              <span>{post.category}</span>
-            ) : (
               <span>uncategorized</span>
+            ) : (
+              <span>{post.category}</span>
             )}
           </div>
           <div className="text-lg md:text-xl  mt-5 w-full px-2 mb-10 md:w-5/6">
