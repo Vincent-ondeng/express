@@ -19,11 +19,9 @@ const Feed = ({ posts }) => {
               <h1 className="font-black text-2xl md:text-4xl capitalize">
                 {post.title}
               </h1>
-            </Link>
-            <span className="text-gray-800 text-lg py-2">
-              {post.description}
-            </span>
-            <Link to={`/post/${post.id}`}>
+              <span className="text-gray-800 text-lg py-2">
+                {post.description}
+              </span>
               <span className="text-semibold text-lg  w-full  text-blue-500 hover:underline transition-all">
                 Read More
               </span>

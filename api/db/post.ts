@@ -1,4 +1,4 @@
-import { PrismaClient } from ".prisma/client";
+import { PrismaClient } from '.prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -54,7 +54,6 @@ class PostFunctions {
       where: { id: postID },
       include: {
         author: true,
-        comments: true,
       },
     });
   }

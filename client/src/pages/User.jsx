@@ -26,7 +26,7 @@ const User = () => {
       .catch((error) => {
         console.log("error: ", error);
       });
-  }, [user.id, token, userPosts, navigate]);
+  }, []);
   return (
     <>
       <Navbar />

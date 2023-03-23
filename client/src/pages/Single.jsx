@@ -15,7 +15,7 @@ const Single = () => {
         setLoading(false);
         setPost(data);
       });
-  }, [id]);
+  }, []);
 
   return (
     <>
