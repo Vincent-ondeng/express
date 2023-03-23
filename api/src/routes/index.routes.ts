@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import userAuth from '../../db/auth';
+import comments from '../../db/comment';
 import posts from '../../db/post';
 import user from '../../db/user';
 import { verifyToken } from '../../middleware/middlware';
@@ -75,6 +76,12 @@ routes.post('/users/:id/posts/new', verifyToken, async (req, res) => {
   );
   res.status(201).json(results);
 });
+
+routes.post("/comment/new", verifyToken, async(req, res) => {
+    const {userID, postID, comment} = req.body;
+    const results = await comments.add(userID, postID, comment)
+    res.status(201).json(results)
+})
 
 routes.get('/feed', async (req, res) => {
   const result = await posts.all();

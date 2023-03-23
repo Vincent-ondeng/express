@@ -18,36 +18,25 @@ model UserAuth {
   userId   Int
 }
 
-// A user has their own posts and comments they make
-// A user also has a profile
 model User {
   id       Int        @id @default(autoincrement())
   username String     @unique
   imgURL   String?
   bio      String?
   posts    Post[]
-  comments Comment[]
   UserAuth UserAuth[]
 }
 
 model Post {
-  id          Int       @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   imgURL      String?
   title       String
   description String?
   content     String?
   category    String
-  published   Boolean   @default(false)
-  comments    Comment[]
-  author      User      @relation(fields: [authorId], references: [id])
+  published   Boolean @default(false)
+  author      User    @relation(fields: [authorId], references: [id])
   authorId    Int
-}
 
-model Comment {
-  id      Int     @id @default(autoincrement())
-  content String?
-  User    User?   @relation(fields: [userId], references: [id])
-  userId  Int?
-  Post    Post?   @relation(fields: [postId], references: [id])
-  postId  Int?
+  @@index([id])
 }
