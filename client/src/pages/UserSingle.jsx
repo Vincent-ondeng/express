@@ -6,18 +6,21 @@ const UserSingle = () => {
   const [post, setPost] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const { id } = useParams();
-  const userID = JSON.parse(localStorage.getItem("id"));
+  const user = JSON.parse(localStorage.getItem("user"));
   const token = JSON.parse(localStorage.getItem("token"));
   const navigate = useNavigate();
 
   const handleDelete = () => {
-    fetch(`https://express-api-o02g.onrender.com/users/${userID}/posts/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    fetch(
+      `https://express-api-o02g.onrender.com/users/${user.id}/posts/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 204) console.log("noice");
       })
