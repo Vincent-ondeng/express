@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 
 const Single = () => {
@@ -21,13 +21,9 @@ const Single = () => {
     <>
       {isLoading && <Loading />}
       {post && (
-        <div className="flex flex-col px-4 md:px-10 w-full md:w-5/6 bg-slate-100 md:bg-slate-200 mb-10 rounded-md md:shadow-lg items-center text-justify">
+        <div className="flex flex-col px-4 md:px-10 w-full md:w-5/6 bg-slate-100 md:bg-slate-50 mb-10 rounded-md md:shadow-lg items-center text-justify">
           <img
-            src={
-              post.imgURL === null
-                ? "https://github.com/musaubrian/newspulse/blob/main/assets/images/notfound.png?raw=true"
-                : post.imgURL
-            }
+            src={post.imgURL}
             alt="post thumbnail"
             className="w-full md:h-60 h-40 my-5 rounded-md object-cover shadow-lg"
           />
@@ -51,6 +47,12 @@ const Single = () => {
               {post.content}
             </p>
           </div>
+          <Link
+            to="/"
+            className="inline-flex items-center justify-center w-full md:w-1/6 border-2 border-slate-300 p-2 mb-5 rounded-md font-semibold text-blue-400 text-lg"
+          >
+            Back Home
+          </Link>
         </div>
       )}
     </>

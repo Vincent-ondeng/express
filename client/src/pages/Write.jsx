@@ -19,24 +19,33 @@ const Write = () => {
   if (user === null || user === "undefined") navigate("/login");
   const uploadFile = async (file) => {
     setSending(true);
-    const { data, error } = await supabase.storage
-      .from("images")
-      .upload(`posts/${file.name}`, file, { cacheControl: 3600, upsert: true });
+    if (selectedFile === null || selectedFile === "undefined") {
+      const fallbackUrl =
+        "https://github.com/musaubrian/newspulse/blob/main/assets/images/notfound.png?raw=true";
+      return fallbackUrl;
+    } else {
+      const { data, error } = await supabase.storage
+        .from("images")
+        .upload(`posts/${file.name}`, file, {
+          cacheControl: 3600,
+          upsert: true,
+        });
 
-    if (error) {
-      console.log(error);
+      if (error) {
+        console.log(error);
+      }
+
+      const imageUrl = `${supabaseUrl}//storage/v1/object/public/images/${data.path}`;
+
+      console.log(imageUrl);
+      return imageUrl;
     }
-
-    const imageUrl = `${supabaseUrl}//storage/v1/object/public/images/${data.path}`;
-
-    console.log(imageUrl);
-    return imageUrl;
   };
 
   const newPost = async (e) => {
     e.preventDefault();
-    const url = await uploadFile(selectedFile);
     setSending(true);
+    const url = await uploadFile(selectedFile);
     const postData = { url, title, category, description, content, publish };
     fetch(`https://express-api-o02g.onrender.com/users/${id}/posts/new`, {
       method: "POST",
@@ -112,15 +121,8 @@ const Write = () => {
         <div className="inline-flex justify-center w-full">
           <button className="mx-3 text-semibold text-lg bg-blue-400 px-5 py-3 rounded-md mt-2 mb-20 md:w-2/6 w-3/6 transition-all hover:bg-blue-600 hover:text-gray-50">
             {!sending && <span>Publish post</span>}
-            {sending && <span>publishing post...</span>}
+            {sending && <span>Publishing...</span>}
           </button>
-          {/* <button
-            onClick={handleDraft}
-            className="mx-3 text-semibold text-lg border-2 border-[#87ceeb] px-5 py-3 rounded-md mt-2 mb-5 hover:bg-[#4eafd6] hover:text-gray-50 hover:border-0"
-          >
-            {!createDraft && <span>Create a draft</span>}
-            {createDraft && <span>Creating a draft...</span>}
-          </button> */}
         </div>
       </form>
     </div>

@@ -58,7 +58,7 @@ const UpdateProfile = () => {
           "username",
           JSON.stringify(updateResponse.username)
         );
-        navigate("/user/me");
+        navigate("/");
         setUpdateStatus(false);
       })
       .catch((error) => {
