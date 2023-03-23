@@ -10,7 +10,6 @@ const UpdateProfile = () => {
   const [selectedImage, setImage] = useState(null);
   const [userBio, setUserBio] = useState(user.bio);
   const [updating, setUpdateStatus] = useState(false);
-  const [updateResponse, setUpdateResponse] = useState("");
   const navigate = useNavigate();
   const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
   const token = JSON.parse(localStorage.getItem("token"));
@@ -45,20 +44,13 @@ const UpdateProfile = () => {
     })
       .then((res) => {
         if (res === 200) {
-          localStorage.removeItem("username");
-          localStorage.removeItem("bio");
-          localStorage.removeItem("imgURL");
+          localStorage.removeItem("user");
         }
         return res.json();
       })
       .then((data) => {
-        setUpdateResponse(data);
-        console.log(updateResponse, data);
-        localStorage.setItem(
-          "username",
-          JSON.stringify(updateResponse.username)
-        );
-        navigate("/");
+        localStorage.setItem("user", JSON.stringify(data));
+        navigate("/user/me");
         setUpdateStatus(false);
       })
       .catch((error) => {

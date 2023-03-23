@@ -37,6 +37,7 @@ const Register = () => {
         .catch((error) => {
           setRegistrationStatus(false);
           console.error("There was a problem with the fetch operation:", error);
+          setRegistrationStatus(false);
         });
     } else {
       setPWDError(true);

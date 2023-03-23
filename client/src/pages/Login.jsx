@@ -34,22 +34,6 @@ const Login = () => {
           "user",
           JSON.stringify(loginResponse.userDets.User)
         );
-        localStorage.setItem(
-          "id",
-          JSON.stringify(loginResponse.userDets.User.id)
-        );
-        localStorage.setItem(
-          "username",
-          JSON.stringify(loginResponse.userDets.User.username)
-        );
-        localStorage.setItem(
-          "imgURL",
-          JSON.stringify(loginResponse.userDets.User.imgURL)
-        );
-        localStorage.setItem(
-          "bio",
-          JSON.stringify(loginResponse.userDets.User.bio)
-        );
 
         navigate("/user/me");
       })
@@ -79,7 +63,7 @@ const Login = () => {
           <input
             required
             type="email"
-            placeholder="email"
+            placeholder="name@company.com"
             className="w-full md:w-5/6 border-2 rounded-md mb-2 p-3 md:p-4 text-lg  border-slate-500 bg-transparent"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
@@ -90,12 +74,11 @@ const Login = () => {
           <input
             required
             type="password"
-            placeholder="password"
+            placeholder="supersecretpassword"
             className="w-full md:w-5/6 border-2 rounded-md mb-2 p-3 md:p-4  border-slate-500 bg-transparent"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-          {/* <p>This is an error!</p> */}
           <span className="text-center mb-5 mt-2">
             Don't have an account?
             <Link to="/register" className="text-blue-400 mx-2 font-semibold">

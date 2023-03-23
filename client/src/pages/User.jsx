@@ -8,16 +8,12 @@ const User = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
 
-  const username = JSON.parse(localStorage.getItem("username"));
-  const bio = JSON.parse(localStorage.getItem("bio"));
-  const id = JSON.parse(localStorage.getItem("id"));
-  const imgURL = JSON.parse(localStorage.getItem("imgURL"));
   if (user === null) {
     navigate("/");
   }
 
   useEffect(() => {
-    fetch(`https://express-api-o02g.onrender.com/users/${id}/posts/`, {
+    fetch(`https://express-api-o02g.onrender.com/users/${user.id}/posts/`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
@@ -30,7 +26,7 @@ const User = () => {
       .catch((error) => {
         console.log("error: ", error);
       });
-  }, [id, token, userPosts, navigate]);
+  }, [user.id, token, userPosts, navigate]);
   return (
     <>
       <Navbar />
@@ -40,20 +36,20 @@ const User = () => {
             <div className="flex flex-col md:flex-row items-center justify-center border-b-2 p-5 mb-10 border-slate-400">
               <div className="w-full md:w-3/6 inline-flex items-center justify-center md:justify-end md:px-10">
                 <img
-                  src={imgURL}
+                  src={user.imgURL}
                   alt=""
                   className="w-3/6 md:w-2/6 mb-5 rounded-full shadow-lg object-cover"
                 />
               </div>
               <div className="w-full md:w-3/6 flex flex-col items-center md:items-start md:px-5">
                 <h1 className="font-semibold text-3xl text-center">
-                  {username}
+                  {user.username}
                 </h1>
                 <p className="text-gray-800 text-lg">
-                  {bio === null ? (
+                  {user.bio === null ? (
                     <span>Nothing about you yet ☹️</span>
                   ) : (
-                    <span>{bio}</span>
+                    <span>{user.bio}</span>
                   )}
                 </p>
                 <Link
