@@ -22,4 +22,4 @@ This is a simple blog site, where people can ahare their thoughts by uploading p
 ## Acknowledgements
 - [Vincent](https://github.com/Vincent-ondeng)
 - [Ernest](https://github.com/musaubrian)
-- [Mercy](https://github.com/)
+- [Mercy](https://github.com/mercyswan)
